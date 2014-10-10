@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE ibatorConfiguration
+  PUBLIC "-//Apache Software Foundation//DTD Apache iBATIS Ibator Configuration 1.0//EN"
+  "http://ibatis.apache.org/dtd/ibator-config_1_0.dtd">
+
+<ibatorConfiguration>
+	<classPathEntry location="D:\repos\zhaopin_api\WebRoot\WEB-INF\lib\mysql-connector-java-5.1.25-bin.jar" />
+	<ibatorContext id="FlatJava5" targetRuntime="Ibatis2Java5">
+		<property name="suppressTypeWarnings" value="true" />
+		<!-- Serializable化 -->
+		<ibatorPlugin type="org.apache.ibatis.ibator.plugins.SerializablePlugin" />
+		<!-- 这个插件添加方法为例(实际上的内部类)来支持不区分大小写像搜索。这个演示了增加功能,通过一个实例类插件,而不是延长上课。 -->
+		<!--  ibatorPlugin type="org.apache.ibatis.ibator.plugins.CaseInsensitiveLikePlugin" />-->
+		 
+<!-- 		<ibatorPlugin type="org.apache.ibatis.ibator.plugins.PaginationPlugin">
+        	<property name="enablePagination" value="true" />
+        	<property name="dbType" value="mysql" />
+	    </ibatorPlugin> -->
+
+		<!-- 重命名example类 -->
+		<ibatorPlugin
+			type="org.apache.ibatis.ibator.plugins.RenameExampleClassPlugin">
+			<property name="searchString" value="Example$" />
+			<property name="replaceString" value="Criteria" />
+		</ibatorPlugin>
+		<!-- 产生sqlmap.xml-->
+		<ibatorPlugin type="org.apache.ibatis.ibator.plugins.SqlMapConfigPlugin">
+			<property name="targetPackage" value="com.wugu.zhaopin" />
+			<property name="targetProject" value="zhaopin_api/src" />
+		</ibatorPlugin>
+		
+
+		<!-- driverClass="com.mysql.jdbc.Driver" -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://192.168.1.6:3306/qa_wugu_zhaopin" userId="root"
+			password="Wgool%1" >
+			<!-- 是否返回数据库注释，MySQL默认是true，oracle默认是false -->
+			<property name="remarksReporting" value="true"/>
+			</jdbcConnection>
+		<javaModelGenerator targetPackage="com.wugu.zhaopin.vo"
+			targetProject="zhaopin_api/src">
+			<!-- 如果为TRUE，下面的设置了schema,那么包名就是会增加个schema名，
+			如果schema=“aaa”  , test.pojo.aaa.XXXX;
+			<property name="enableSubPackages" value="true" />
+			 -->
+
+		</javaModelGenerator>
+
+		<sqlMapGenerator targetPackage="com.wugu.zhaopin.vo.sqlmap"
+			targetProject="zhaopin_api/src">
+			<!--
+			<property name="enableSubPackages" value="true" />
+			 -->
+		</sqlMapGenerator>
+
+		<daoGenerator type="GENERIC-CI" targetPackage="com.wugu.zhaopin.dao" implementationPackage="com.wugu.zhaopin.dao.impl"
+			targetProject="zhaopin_api/src">
+			<!--
+			<property name="enableSubPackages" value="true" />
+			 -->
+		</daoGenerator>
+
+		<!--
+		如果数据库里面有多个相同表名在不同的schema下，那么你得加上:
+		schema="XXXX"和<property name="ignoreQualifiersAtRuntime" value="true" />
+		不然ibator会以找到的最后一个为最终对象，这个问题苦恼了我很久，后来才发现
+		 -->
+
+    <!--<table tableName="zp_audition_info" >
+      <generatedKey column="audition_info_id" sqlStatement="mysql" identity="true"/>
+    </table>
+     <table tableName="zp_company_contact" >
+        <generatedKey column="company_contact_id" sqlStatement="mysql" identity="true"/>
+    </table>-->
+    <!--<table tableName="zp_company_info" >
+        <generatedKey column="company_id" sqlStatement="mysql" identity="true"/>
+    </table>
+    <table tableName="zp_delivery_info" >
+      <generatedKey column="delivery_info_id" sqlStatement="mysql" identity="true"/>      
+    </table>
+   <table tableName="zp_dictinary" >
+      <generatedKey column="row_id" sqlStatement="mysql" identity="true"/>
+    </table> 
+     <table tableName="zp_post_info" >
+      <generatedKey column="post_id" sqlStatement="mysql" identity="true"/>
+    </table>  -->  
+     <!--  <table tableName="zp_resume_certificate" >
+      <generatedKey column="resume_certificate_id" sqlStatement="mysql" identity="true"/>
+    </table>
+     <table tableName="zp_resume_education" >
+      <generatedKey column="resume_education_id" sqlStatement="mysql" identity="true"/>
+    </table>
+    <table tableName="zp_resume_experience" >
+      <generatedKey column="resume_experience_id" sqlStatement="mysql" identity="true"/>
+    </table>--> 
+     <!-- <table tableName="zp_resume_info" >
+      <generatedKey column="resume_id" sqlStatement="mysql" identity="true"/>
+    </table> -->
+        <!--<table tableName="zp_resume_language" >
+      <generatedKey column="resume_language_id" sqlStatement="mysql" identity="true"/>
+    </table>
+     <table tableName="zp_resume_skill" >
+      <generatedKey column="resume_skill_id" sqlStatement="mysql" identity="true"/>
+    </table>
+    <table tableName="zp_resume_tag" >
+      <generatedKey column="resume_tag_id" sqlStatement="mysql" identity="true"/>
+    </table>
+     <table tableName="zp_tag" >
+      <generatedKey column="tag_id" sqlStatement="mysql" identity="true"/>
+    </table>-->
+    <table tableName="sms_log" >
+      <generatedKey column="id" sqlStatement="mysql" identity="true"/>
+    </table>
+    <!-- <table tableName="zp_user" >
+      
+    </table>  
+    <table tableName="zp_person_info" >
+      
+    </table>  
+    <table tableName="base_Province" >
+      
+    </table>   
+    <table tableName="base_City" >
+      
+    </table>
+    <table tableName="base_District" >
+      
+    </table>
+    <table tableName="base_Area" >
+      
+    </table>
+    <table tableName="base_City_District_Area_Map" >
+      <generatedKey column="ID" sqlStatement="mysql" identity="true"/>
+    </table>  -->      
+	</ibatorContext>
+</ibatorConfiguration>

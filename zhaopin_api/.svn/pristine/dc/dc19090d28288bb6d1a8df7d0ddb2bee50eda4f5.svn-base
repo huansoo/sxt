@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE ibatorConfiguration
+  PUBLIC "-//Apache Software Foundation//DTD Apache iBATIS Ibator Configuration 1.0//EN"
+  "http://ibatis.apache.org/dtd/ibator-config_1_0.dtd">
+
+<ibatorConfiguration>
+	<classPathEntry location="D:\repos\zhaopin_api\WebRoot\WEB-INF\lib\mysql-connector-java-5.1.25-bin.jar" />
+	<ibatorContext id="FlatJava5" targetRuntime="Ibatis2Java5">
+		<property name="suppressTypeWarnings" value="true" />
+		
+		<!-- 重命名example类 -->
+		<ibatorPlugin
+			type="org.apache.ibatis.ibator.plugins.RenameExampleClassPlugin">
+			<property name="searchString" value="Example$" />
+			<property name="replaceString" value="Criteria" />
+		</ibatorPlugin>
+				
+
+		<!-- driverClass="com.mysql.jdbc.Driver" -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://192.168.1.6:3306/qa_wugu_zhaopin" userId="root"
+			password="Wgool%1" >
+			<!-- 是否返回数据库注释，MySQL默认是true，oracle默认是false -->
+			<property name="remarksReporting" value="true"/>
+			</jdbcConnection>
+		<javaModelGenerator targetPackage="com.wugu.zhaopin.webapp.model"
+			targetProject="zhaopin_api/src">
+			 <!-- 继承哪个父类，这个为了有时候日志需要打印整个对象，而采用的apache打印对象的每个属性 -->
+			 <property name="rootClass" value="BaseModel" />
+		</javaModelGenerator>		
+		<sqlMapGenerator targetPackage="com.wugu.zhaopin.vo.sqlmap"
+			targetProject="zhaopin_api/src">
+			<!--
+			<property name="enableSubPackages" value="true" />
+			 -->
+		</sqlMapGenerator>
+
+		<daoGenerator type="SPRING" targetPackage="com.wugu.zhaopin.dao" implementationPackage="com.wugu.zhaopin.dao.impl"
+			targetProject="zhaopin_api/src">
+			<!--
+			<property name="enableSubPackages" value="true" />
+			 -->
+		</daoGenerator>
+		
+    <table tableName="resume_report" >
+        <!-- <generatedKey column="company_id" sqlStatement="mysql" identity="true"/>  -->
+    </table>
+
+	</ibatorContext>
+</ibatorConfiguration>

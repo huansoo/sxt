@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="delivery_info">
+  <typeAlias alias="deliveryinfo" type="com.wugu.zhaopin.webapp.model.DeliveryInfo"/>
+  <typeAlias alias="deliveryinfocriteria" type="com.wugu.zhaopin.webapp.model.DeliveryInfoCriteria"/>
+  <typeAlias alias="PersonInfo" type="com.wugu.zhaopin.vo.ZpPersonInfo"/>
+  
+  <resultMap class="deliveryinfo" id="BaseResultMap">
+    <result column="delivery_info_id" jdbcType="BIGINT" property="deliveryInfoId" />
+    <result column="delivery_uid" jdbcType="BIGINT" property="deliveryUid" />
+    <result column="resume_id" jdbcType="BIGINT" property="resumeId" />
+    <result column="company_id" jdbcType="INTEGER" property="companyId" />
+    <result column="post_id" jdbcType="INTEGER" property="postId" />
+    <result column="delivery_type" jdbcType="INTEGER" property="deliveryType" />
+    <result column="create_time" jdbcType="INTEGER" property="createTime" />
+    <result column="update_time" jdbcType="INTEGER" property="updateTime" />
+    <result column="company_name" jdbcType="VARCHAR" property="companyName" />
+    <result column="post_name" jdbcType="VARCHAR" property="postName" />
+    <result column="delivery_uid" property="personInfo" select="delivery_info.personInfo_selectByPrimaryKey" />
+  </resultMap>
+  
+    <resultMap id="PersonInfoResultMap" class="PersonInfo" >
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="real_name" property="realName" jdbcType="VARCHAR" />
+    <result column="gender" property="gender" jdbcType="INTEGER" />
+    <result column="photo" property="photo" jdbcType="VARCHAR" />
+    <result column="birth_date" property="birthDate" jdbcType="INTEGER" />
+    <result column="work_time" property="workTime" jdbcType="INTEGER" />
+    <result column="education_bg" property="educationBg" jdbcType="INTEGER" />
+    <result column="residence" property="residence" jdbcType="VARCHAR" />
+    <result column="mobile_tel" property="mobileTel" jdbcType="VARCHAR" />
+    <result column="fixed_tel" property="fixedTel" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="INTEGER" />
+    <result column="op_id" property="opId" jdbcType="BIGINT" />
+  </resultMap>
+  
+  <sql id="Example_Where_Clause">
+    <iterate conjunction="or" prepend="where" property="oredCriteria" removeFirstPrepend="iterate">
+      <isEqual compareValue="true" property="oredCriteria[].valid">
+        (
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithoutValue">
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithSingleValue">
+          $oredCriteria[].criteriaWithSingleValue[].condition$
+            #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithListValue">
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate close=")" conjunction="," open="(" property="oredCriteria[].criteriaWithListValue[].values">
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithBetweenValue">
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <select id="selectByExample" parameterClass="DeliveryInfoCriteria" resultMap="BaseResultMap">
+		SELECT
+			*
+		FROM
+			(
+				SELECT
+					d.delivery_info_id,
+					d.delivery_uid,
+					d.resume_id,
+					d.company_id,
+					d.post_id,
+					d.delivery_type,
+					d.create_time,
+					d.update_time,
+					d.status,
+					c.`name` AS company_name,
+					p.`name` AS post_name
+				FROM
+					zp_delivery_info d
+				LEFT JOIN zp_company_info c ON d.company_id = c.company_id
+				LEFT JOIN zp_post_info p ON d.post_id = p.post_id
+			) a
+    <isParameterPresent>
+      <include refid="delivery_info.Example_Where_Clause" />
+      <isNotNull property="orderByClause">
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+	<![CDATA[  limit $pageInfo.offset$]]>
+	<![CDATA[    , $pageInfo.pageSize$]]> 
+  </select>
+  <select id="countByExample" parameterClass="DeliveryInfoCriteria" resultClass="java.lang.Integer">
+    select count(*) from zp_delivery_info
+    <include refid="delivery_info.Example_Where_Clause" />
+  </select>
+  
+   <select id="personInfo_selectByPrimaryKey" parameterClass="java.lang.Long" resultMap="PersonInfoResultMap" resultClass="PersonInfo" >
+    select user_id, real_name, gender, photo, birth_date, work_time, education_bg, residence,
+      mobile_tel, fixed_tel, email, type, status, create_time, update_time, op_id
+    from zp_person_info
+    where user_id = #userId:BIGINT#
+  </select>
+  
+</sqlMap>

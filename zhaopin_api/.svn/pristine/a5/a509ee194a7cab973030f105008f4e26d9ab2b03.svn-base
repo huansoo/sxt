@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>个人收到的邮件</title>
+<style>
+*{margin:0;padding:0;}
+p{font-size:14px;line-height:23px;margin-bottom:10px;text-indent:2em;}
+</style>
+</head>
+
+<body>
+<div style="width:660px;">
+    <h3 style="font-size:14px;margin-bottom:20px;">{userName}：</h3></td>
+    <p>恭喜您在吾谷人才获得了面试邀请，邀请您的企业为{companyname}，面试的职位为{postName}。你可以查阅：</p>    
+    <p><a href="{url_audition}" style="color:#0c6219;">我收到的邀请</a></p>
+    <p><a href="{url_postInfo}" style="color:#0c6219;">邀请职位</a></p>
+    <p><a href="{url_companyInfo}" style="color:#0c6219;">{companyname}详情</a></p>
+    <p style="margin:20px 0;">您还可以了解以下信息：</p>
+    <p><a href="{url_MyAllResume}" style="color:#0c6219;">我的全部简历</a></p>
+    <p style="text-align:right;"><strong>吾谷人才</strong></p>
+    <p style="height:2px;border-top:1px dashed #b3b3b3;"></p>        
+    <p style="font-size:12px;color:#767676;">本邮件系统自动发送，请不要直接回复。若有疑问请咨询：010-65896865, <a href="mailto:pr@wugu.com.cn">pr@wugu.com.cn</a></p>           
+</div>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- default-lazy-init="true"  -->
+<beans  xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+            http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+            http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
+            
+    <!-- default-lazy-init="true" -->        
+    <aop:config proxy-target-class="true">
+        <aop:advisor pointcut="execution(* com.wugu.zhaopin.service..*.*(..))" advice-ref="txAdvice"/>
+    </aop:config> 
+    
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+         <tx:attributes>
+             <tx:method name="get*" read-only="true"  rollback-for="Exception" />
+            <!--   <tx:method name="*"  rollback-for="Exception"/> -->
+        </tx:attributes>
+    </tx:advice>   
+    
+    
+	<!-- add SERVICE by yourself like this -->
+
+	<bean id="companymanager" class="com.wugu.zhaopin.service.impl.CompanyManagerImpl">
+		<property name="companycontactdao" ref="companycontactdao" />
+		<property name="companyinfodao" ref="companyinfodao" />
+		<property name="companydao" ref="companydao" />
+		<property name="postinfodao" ref="postinfodao" />
+		<property name="personInfoManager" ref="personInfoManager" />
+		<property name="userManager" ref="usermanager" />
+    </bean>
+    
+    <bean id="usermanager" class="com.wugu.zhaopin.service.impl.UserManagerImpl">
+		<property name="userdao" ref="userdao" />
+    </bean>
+
+    <bean id="dictinarymanager" class="com.wugu.zhaopin.service.impl.DictinaryManagerImpl">
+		<property name="dictinarydao" ref="dictinarydao" />
+    </bean>	
+    
+     <bean id="auditioninfomanager" class="com.wugu.zhaopin.service.impl.AuditionInfoManagerImpl">
+		<property name="auditioninfodao" ref="auditioninfodao" />
+		<property name="auditioninfodao2" ref="auditioninfodao2" />
+    </bean>	   
+    
+     <bean id="resumecertificatemanager" class="com.wugu.zhaopin.service.impl.ResumeCertificateManagerImpl">
+		<property name="resumecertificatedao" ref="resumecertificatedao" />
+    </bean>	   
+    
+     <bean id="resumeeducationmanager" class="com.wugu.zhaopin.service.impl.ResumeEducationManagerImpl">
+		<property name="resumeeducationdao" ref="resumeeducationdao" />
+    </bean>	   
+    
+    <bean id="resumeexperiencemanager" class="com.wugu.zhaopin.service.impl.ResumeExperienceManagerImpl">
+		<property name="resumeexperiencedao" ref="resumeexperiencedao" />
+    </bean>	   
+              
+    <bean id="personInfoManager" class="com.wugu.zhaopin.service.impl.PersonInfoManagerImpl">
+		<property name="personinfodao" ref="personinfodao" />
+    </bean>	   
+    
+    <bean id="resumeinfomanager" class="com.wugu.zhaopin.service.impl.ResumeInfoManagerImpl">
+		<property name="resumeinfodao" ref="resumeinfodao" />
+		<property name="personInfoManager" ref="personInfoManager" />
+		<property name="userManager" ref="usermanager" />
+    </bean>	   
+    
+     <bean id="resumelanguagemanager" class="com.wugu.zhaopin.service.impl.ResumeLanguageManagerImpl">
+		<property name="resumelanguagedao" ref="resumelanguagedao" />
+    </bean>	   
+    
+     <bean id="resumeskillmanager" class="com.wugu.zhaopin.service.impl.ResumeSkillManagerImpl">
+		<property name="resumeskilldao" ref="resumeskilldao" />
+    </bean>	   
+    
+     <bean id="resumetagmanager" class="com.wugu.zhaopin.service.impl.ResumeTagManagerImpl">
+		<property name="resumetagdao" ref="resumetagdao" />
+    </bean>	   
+    
+     <bean id="tagmanager" class="com.wugu.zhaopin.service.impl.TagManagerImpl">
+		<property name="tagdao" ref="tagdao" />
+    </bean>    
+    
+     <bean id="deliveryinfomanager" class="com.wugu.zhaopin.service.impl.DeliveryInfoManagerImpl">
+		<property name="deliveryinfodao" ref="deliveryinfodao" />
+    </bean>	
+    
+     <bean id="baseareamanager" class="com.wugu.zhaopin.service.impl.BaseAreaManagerImpl">
+		<property name="baseareadao" ref="baseareadao" />
+    </bean>	
+        
+     <bean id="basecitymanager" class="com.wugu.zhaopin.service.impl.BaseCityManagerImpl">
+		<property name="basecitydao" ref="basecitydao" />
+    </bean>	
+    
+     <bean id="basecitydistrictareamapmanager" class="com.wugu.zhaopin.service.impl.BaseCityDistrictAreaMapManagerImpl">
+		<property name="basecitydistrictareamapdao" ref="basecitydistrictareamapdao" />
+    </bean>	
+    
+     <bean id="basedistrictmanager" class="com.wugu.zhaopin.service.impl.BaseDistrictManagerImpl">
+		<property name="basedistrictdao" ref="basedistrictdao" />
+    </bean>	
+    
+     <bean id="baseprovincemanager" class="com.wugu.zhaopin.service.impl.BaseProvinceManagerImpl">
+		<property name="baseprovincedao" ref="baseprovincedao" />
+    </bean>	
+</beans>

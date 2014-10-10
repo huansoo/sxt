@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="zhaopin" basedir="." default="compile">
+<property name="dir.src" location="${basedir}/src" />
+<property name="dir.filter" location="${basedir}/filter" />
+<property name="dir.dest" location="../tomcat" />
+<property name="dir.conf_xwork" location="${basedir}/conf_xwork" />
+<property name="dir.conf_spring" location="${basedir}/conf_spring" />
+<property name="dir.conf_system" location="${basedir}/conf_system" />
+
+<property name="srcDic.dir" value="${basedir}/WebRoot"/>
+<property name="dir.lib" location="${basedir}/WebRoot/WEB-INF/lib" />
+<property name="tomcat.lib" location="${dir.dest}/lib" />	
+<property name="dir.classes" location="${srcDic.dir}/WEB-INF/classes"></property>	
+<property name="apps.dir" value="${dir.dest}/webapps/${ant.project.name}"></property>
+	<!--清理工程目录-->
+ 	<target name="cleanwebserver" description="清理服务器端工程">
+ 		<delete dir="${apps.dir}"></delete>
+ 	</target>
+	<target name="clean" description="清理编译的class文件">	
+		<echo message="---->clean class files ...."></echo>
+		<delete dir="${dir.classes}"></delete>
+	</target>
+  	
+	<target name="compile" depends="clean" description="编译Java代码">
+		  <echo message="---->compile java files...."></echo>
+		  <mkdir dir="${dir.classes}"/>
+		  <mkdir dir="${apps.dir}/webapps"/>
+		
+		   <javac srcdir="${dir.src}" destdir="${dir.classes}" includeantruntime="on" debug="on">
+			 <compilerarg line="-encoding UTF-8" />
+				<classpath>
+					<fileset dir="${dir.lib}" includes="**/*.jar" />
+					<fileset dir="${tomcat.lib}" includes="**/*.jar" />
+				</classpath>		
+			</javac>
+		   <javac srcdir="${dir.filter}" destdir="${dir.classes}" includeantruntime="on" debug="on">
+			 <compilerarg line="-encoding UTF-8" />
+				<classpath>
+					<fileset dir="${dir.lib}" includes="**/*.jar" />
+					<fileset dir="${tomcat.lib}" includes="**/*.jar" />
+				</classpath>		
+			</javac>		       
+		 <copy todir="${dir.classes}">
+			<fileset dir="${dir.src}">
+				<include name="**/*.properties" />
+				<include name="**/*.xml" />
+			</fileset>
+		 	
+		 	<fileset dir="${dir.conf_xwork}">
+		 	</fileset>
+		 	<fileset dir="${dir.conf_spring}">
+		 	</fileset>
+		 	<fileset dir="${dir.conf_system}">
+		 	</fileset>
+		</copy>
+		 <copy todir="${apps.dir}">
+			<fileset dir="${srcDic.dir}">
+				
+			</fileset>
+		</copy>
+		
+	</target>
+</project>

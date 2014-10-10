@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+	<!-- Configuration for the user package. -->
+	<package name="test" extends="default" namespace="/test">
+	
+		<action name="hello" class="com.wugu.zhaopin.webapp.action.HelloAction" >		
+			<result name="toHello" type="freemarker">/WEB-INF/pages/test/hello.ftl</result>
+
+			<!-- interceptor-ref name="loginStack" /-->
+		</action>
+	</package>
+	
+</xwork>

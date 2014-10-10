@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN" "sql-map-config-2.dtd">
+<sqlMapConfig>
+	<settings cacheModelsEnabled="true" enhancementEnabled="true"
+		lazyLoadingEnabled="true" errorTracingEnabled="true" maxRequests="32"
+		maxSessions="10" maxTransactions="5" useStatementNamespaces="true" />
+	
+	<!-- add sqlmap by yourself like this -->
+    <sqlMap resource="com/wugu/zhaopin/vo/sqlmap/zp_audition_info_SqlMap.xml" />
+    <sqlMap resource="com/wugu/zhaopin/vo/sqlmap/audition_info_SqlMap.xml" />
+    <sqlMap resource="com/wugu/zhaopin/vo/sqlmap/zp_company_contact_SqlMap.xml" />
+    <sqlMap resource="com/wugu/zhaopin/vo/sqlmap/zp_company_info_SqlMap.xml" />
+    <sqlMap resource="com/wugu/zhaopin/vo/sqlmap/zp_delivery_info_SqlMap.xml" />
+    <sqlMap resource="com/wugu/zhaopin/vo/sqlmap/zp_dictinary_SqlMap.xml" />    
+    <sqlMap resource="com/wugu/zhaopin/vo/sqlmap/zp_post_info_SqlMap.xml" />
+    <sqlMap resource="com/wugu/zhaopin/vo/sqlmap/zp_resume_certificate_SqlMap.xml" />
+    <sqlMap resource="com/wugu/zhaopin/vo/sqlmap/zp_resume_education_SqlMap.xml" />
+    <sqlMap resource="com/wugu/zhaopin/vo/sqlmap/zp_resume_experience_SqlMap.xml" />
+    <sqlMap resource="com/wugu/zhaopin/vo/sqlmap/zp_resume_info_SqlMap.xml" />
+    <sqlMap resource="com/wugu/zhaopin/vo/sqlmap/zp_resume_language_SqlMap.xml" />
+    <sqlMap resource="com/wugu/zhaopin/vo/sqlmap/zp_resume_skill_SqlMap.xml" />
+    <sqlMap resource="com/wugu/zhaopin/vo/sqlmap/zp_resume_tag_SqlMap.xml" />
+    <sqlMap resource="com/wugu/zhaopin/vo/sqlmap/zp_tag_SqlMap.xml" />
+    <sqlMap resource="com/wugu/zhaopin/vo/sqlmap/zp_user_SqlMap.xml" />
+	<sqlMap resource="com/wugu/zhaopin/vo/sqlmap/company_SqlMap.xml" />
+	<sqlMap resource="com/wugu/zhaopin/vo/sqlmap/zp_person_info_SqlMap.xml" />
+	<sqlMap resource="com/wugu/zhaopin/vo/sqlmap/resume_info_SqlMap.xml" />	
+	<sqlMap resource="com/wugu/zhaopin/vo/sqlmap/base_Area_SqlMap.xml" />
+	<sqlMap resource="com/wugu/zhaopin/vo/sqlmap/base_City_District_Area_Map_SqlMap.xml" />
+	<sqlMap resource="com/wugu/zhaopin/vo/sqlmap/base_City_SqlMap.xml" />
+	<sqlMap resource="com/wugu/zhaopin/vo/sqlmap/base_District_SqlMap.xml" />
+	<sqlMap resource="com/wugu/zhaopin/vo/sqlmap/base_Province_SqlMap.xml" />
+	<sqlMap resource="com/wugu/zhaopin/vo/sqlmap/delivery_info_SqlMap.xml" />
+	
+</sqlMapConfig>

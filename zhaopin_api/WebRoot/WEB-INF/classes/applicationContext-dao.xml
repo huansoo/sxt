@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- default-lazy-init="true"  -->
+<beans  xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	<!-- default-lazy-init="true"  -->
+	<bean id="lobHandler"
+		class="org.springframework.jdbc.support.lob.DefaultLobHandler" />
+	
+	<bean id="sqlMapClient"
+		class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+		<property name="configLocation">
+			<value>classpath:applicationContext-sqlmap.xml</value>
+		</property>
+		<property name="dataSource" ref="dataSource" />
+		<property name="lobHandler" ref="lobHandler" />
+	</bean>
+	
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>	
+	
+	<bean class="com.ibatis.sqlmap.engine.cache.memcached.MemcachedManager"
+		lazy-init="true" init-method="init" destroy-method="closePool">
+		<property name="serverlist">
+			<value>10.1.8.109:11211
+			</value>
+		</property>
+		<property name="initConn" value="5"/>
+		<property name="minConn" value="5"/>
+		<property name="maxConn" value="200"/>
+	</bean>
+	
+   	
+	<bean id="companycontactdao" class="com.wugu.zhaopin.dao.impl.ZpCompanyContactDAOImpl">
+        <constructor-arg>
+        	<ref bean="sqlMapClient"/>
+        </constructor-arg>
+    </bean>
+    
+    <bean id="companyinfodao" class="com.wugu.zhaopin.dao.impl.ZpCompanyInfoDAOImpl">
+        <constructor-arg>
+        	<ref bean="sqlMapClient"/>
+        </constructor-arg>
+    </bean>
+    
+    <bean id="companydao" class="com.wugu.zhaopin.dao.impl.CompanyDAOImpl">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+    </bean> 
+    
+    <bean id="postinfodao" class="com.wugu.zhaopin.dao.impl.ZpPostInfoDAOImpl">
+        <constructor-arg>
+        	<ref bean="sqlMapClient"/>
+        </constructor-arg>
+    </bean> 
+       
+	<bean id="userdao" class="com.wugu.zhaopin.dao.impl.ZpUserDAOImpl">
+		<constructor-arg>
+        	<ref bean="sqlMapClient" />
+        </constructor-arg>
+    </bean>
+    
+    <bean id="dictinarydao" class="com.wugu.zhaopin.dao.impl.ZpDictinaryDAOImpl">
+		<constructor-arg>
+        	<ref bean="sqlMapClient" />
+        </constructor-arg>
+    </bean>
+    <bean id="auditioninfodao" class="com.wugu.zhaopin.dao.impl.ZpAuditionInfoDAOImpl">
+		<constructor-arg>
+        	<ref bean="sqlMapClient" />
+        </constructor-arg>
+    </bean>
+    <bean id="auditioninfodao2" class="com.wugu.zhaopin.dao.impl.AuditionInfoDAOImpl">
+		<constructor-arg>
+        	<ref bean="sqlMapClient" />
+        </constructor-arg>
+    </bean>
+    <bean id="deliveryinfodao" class="com.wugu.zhaopin.dao.impl.ZpDeliveryInfoDAOImpl">
+		<constructor-arg>
+        	<ref bean="sqlMapClient" />
+        </constructor-arg>
+    </bean>
+    <bean id="resumecertificatedao" class="com.wugu.zhaopin.dao.impl.ZpResumeCertificateDAOImpl">
+		<constructor-arg>
+        	<ref bean="sqlMapClient" />
+        </constructor-arg>
+    </bean>
+    <bean id="resumeeducationdao" class="com.wugu.zhaopin.dao.impl.ZpResumeEducationDAOImpl">
+		<constructor-arg>
+        	<ref bean="sqlMapClient" />
+        </constructor-arg>
+    </bean>
+    <bean id="resumeexperiencedao" class="com.wugu.zhaopin.dao.impl.ZpResumeExperienceDAOImpl">
+		<constructor-arg>
+        	<ref bean="sqlMapClient" />
+        </constructor-arg>
+    </bean>
+    <bean id="resumeinfodao" class="com.wugu.zhaopin.dao.impl.ZpResumeInfoDAOImpl">
+		<constructor-arg>
+        	<ref bean="sqlMapClient" />
+        </constructor-arg>
+    </bean>
+    <bean id="resumelanguagedao" class="com.wugu.zhaopin.dao.impl.ZpResumeLanguageDAOImpl">
+		<constructor-arg>
+        	<ref bean="sqlMapClient" />
+        </constructor-arg>
+    </bean>
+    <bean id="resumeskilldao" class="com.wugu.zhaopin.dao.impl.ZpResumeSkillDAOImpl">
+		<constructor-arg>
+        	<ref bean="sqlMapClient" />
+        </constructor-arg>
+    </bean>
+    <bean id="resumetagdao" class="com.wugu.zhaopin.dao.impl.ZpResumeTagDAOImpl">
+		<constructor-arg>
+        	<ref bean="sqlMapClient" />
+        </constructor-arg>
+    </bean>
+    <bean id="tagdao" class="com.wugu.zhaopin.dao.impl.ZpTagDAOImpl">
+		<constructor-arg>
+        	<ref bean="sqlMapClient" />
+        </constructor-arg>
+    </bean>    
+    <bean id="personinfodao" class="com.wugu.zhaopin.dao.impl.ZpPersonInfoDAOImpl">
+		<constructor-arg>
+        	<ref bean="sqlMapClient" />
+        </constructor-arg>
+    </bean>
+    <bean id="baseareadao" class="com.wugu.zhaopin.dao.impl.BaseAreaDAOImpl">
+		<constructor-arg>
+        	<ref bean="sqlMapClient" />
+        </constructor-arg>
+    </bean>    
+    <bean id="basecitydao" class="com.wugu.zhaopin.dao.impl.BaseCityDAOImpl">
+		<constructor-arg>
+        	<ref bean="sqlMapClient" />
+        </constructor-arg>
+    </bean>
+    <bean id="basecitydistrictareamapdao" class="com.wugu.zhaopin.dao.impl.BaseCityDistrictAreaMapDAOImpl">
+		<constructor-arg>
+        	<ref bean="sqlMapClient" />
+        </constructor-arg>
+    </bean>
+    <bean id="basedistrictdao" class="com.wugu.zhaopin.dao.impl.BaseDistrictDAOImpl">
+		<constructor-arg>
+        	<ref bean="sqlMapClient" />
+        </constructor-arg>
+    </bean>
+    <bean id="baseprovincedao" class="com.wugu.zhaopin.dao.impl.BaseProvinceDAOImpl">
+		<constructor-arg>
+        	<ref bean="sqlMapClient" />
+        </constructor-arg>
+    </bean>  
+             
+</beans>
