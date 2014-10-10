@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	
+  <classPathEntry location="./src/main/webapp/WEB-INF/lib/mysql-connector-java-5.1.25-bin.jar" />
+
+  <context id="mysqlTables" targetRuntime="MyBatis3">
+  	<!-- 查询使用like时不区分大小写 -->
+    <plugin type="org.mybatis.generator.plugins.CaseInsensitiveLikePlugin"></plugin>  
+    
+    <!-- 生成的实体实现serializable接口 -->
+    <plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin> 
+    
+    <!-- 添加分页功能 -->
+  	<plugin type="com.wugu.ycyp.plug.MySqlPaginationPlugin"></plugin> 
+  	<!--<plugin type="org.duoku.groom.mybatis.plugin.PaginationPlugin"></plugin>-->
+  	
+    <commentGenerator>
+      <property name="suppressAllComments" value="true" />
+      <property name="suppressDate" value="true" />
+    </commentGenerator>
+
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+        connectionURL="jdbc:mysql://10.1.8.109:3306/ycyp_bj"
+        userId="root"
+        password="Wgool@1">
+    </jdbcConnection>
+
+    <javaTypeResolver >
+      <property name="forceBigDecimals" value="false" />
+    </javaTypeResolver>
+	
+	<!-- model实体生成地方 -->
+    <javaModelGenerator targetPackage="com.wugu.ycyp.entity" targetProject="./src">
+      <property name="enableSubPackages" value="true" />
+      <property name="trimStrings" value="true" />
+    </javaModelGenerator>
+	
+	<!-- sqlMapper XML文件的生成信息，包括生成路径等 -->
+    <sqlMapGenerator targetPackage="com.wugu.ycyp.xml"  targetProject="./src" >
+      <property name="enableSubPackages" value="true" />
+    </sqlMapGenerator>
+
+    <!-- 应用接口的生成信息 -->
+    <javaClientGenerator type="XMLMAPPER" targetPackage="com.wugu.ycyp.dao"  targetProject="./src">
+      <property name="enableSubPackages" value="true" />
+    </javaClientGenerator>
+    
+	<!--table 用户指定的被生成相关信息的表，它必须在指定的jdbc连接中已经被建立。 -->
+   <!--  <table tableName="ARTICLE_TAG_REL" >
+    	<generatedKey column="id" sqlStatement="mysql" identity="true"/>
+    </table>
+    <table tableName="ARTICLE" >
+    	<generatedKey column="id" sqlStatement="mysql" identity="true"/>
+    </table>
+    <table tableName="AREA" >
+    	<generatedKey column="id" sqlStatement="mysql" identity="true"/>
+    </table>
+    <table tableName="CATEGORY" >
+    	<generatedKey column="id" sqlStatement="mysql" identity="true"/>
+    </table>
+    <table tableName="CMS_FRAGMENT_CONTENT" >
+    	<generatedKey column="content_id" sqlStatement="mysql" identity="true"/>
+    </table>
+    <table tableName="CMS_FRAGMENT_CONTENT_HISTORY" >
+    	<generatedKey column="history_id" sqlStatement="mysql" identity="true"/>
+    </table>
+    <table tableName="IMAGE_GROUP" >
+    	<generatedKey column="id" sqlStatement="mysql" identity="true"/>
+    </table>
+    <table tableName="IMAGES" >
+    	<generatedKey column="id" sqlStatement="mysql" identity="true"/>
+    </table>
+    <table tableName="PAGE_VIEW" >
+    	<generatedKey column="id" sqlStatement="mysql" identity="true"/>
+    </table>
+    <table tableName="PERSON" >
+    	<generatedKey column="id" sqlStatement="mysql" identity="true"/>
+    </table>
+    <table tableName="PERSON_ARTICLE_REL" >
+    	<generatedKey column="id" sqlStatement="mysql" identity="true"/>
+    </table>
+    <table tableName="RECOMMEND" >
+    	<generatedKey column="id" sqlStatement="mysql" identity="true"/>
+    </table>
+    <table tableName="ROLE" >
+    	<generatedKey column="id" sqlStatement="mysql" identity="true"/>
+    </table>
+    <table tableName="SPECIALTY" >
+    	<generatedKey column="id" sqlStatement="mysql" identity="true"/>
+    </table>
+    <table tableName="TAG" >
+    	<generatedKey column="id" sqlStatement="mysql" identity="true"/>
+    </table>
+    <table tableName="USER" >
+    	<generatedKey column="id" sqlStatement="mysql" identity="true"/>
+    </table>
+    <table tableName="AREA_CLASS" >
+    	<generatedKey column="id" sqlStatement="mysql" identity="true"/>
+    </table>   --> 
+    <table tableName="DEPARTMENT" >
+    	<generatedKey column="id" sqlStatement="mysql" identity="true"/>
+    </table>
+  </context>
+</generatorConfiguration>
