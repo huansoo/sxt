@@ -1,0 +1,7 @@
+com\wugu\utils\HttpUtil.class
+com\wugu\controller\BaseController.class
+com\wugu\entity\User.class
+com\wugu\dao\UserDao.class
+com\wugu\service\UserService.class
+com\wugu\service\impl\UserServiceImpl.class
+com\wugu\controller\UserController.class

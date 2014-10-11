@@ -1,0 +1,12 @@
+[
+	{"children":
+		[
+			{"children":[
+							{"children":[],"descript":"分1部门1","id":5,"leaf":0,"oname":"分1部门1","parentId":0,"principal":"老刘","state":"open"},
+							{"children":[],"descript":"分1部门2","id":6,"leaf":0,"oname":"分1部门2","parentId":0,"principal":"老裴","state":"open"}],
+			"descript":"分1","id":2,"leaf":0,"oname":"分公司1","parentId":0,"principal":"老李","state":"open"},
+			{"children":[
+						{"children":[],"descript":"分2部门1","id":7,"leaf":0,"oname":"分2部门1","parentId":0,"principal":"老夏","state":"open"}],
+						"descript":"分2","id":3,"leaf":0,"oname":"分公司2","parentId":0,"principal":"老王","state":"open"},
+						{"children":[],"descript":"分3","id":4,"leaf":0,"oname":"分公司3","parentId":0,"principal":"老张","state":"open"}],
+						"descript":"我是总公司","id":1,"leaf":0,"oname":"总公司","parentId":0,"principal":"老高","state":"open"}]

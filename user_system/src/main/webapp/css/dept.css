@@ -1,0 +1,18 @@
+.table_look{
+    background-image: url(../images/table_look.png) !important;
+}
+.dept_tree{
+    background-image: url(../images/dept_tree.png) !important;
+}
+.table_remove{
+	background-image: url(../images/table_remove.gif) !important;
+}
+.table_add{
+	background-image: url(../images/table_add.png) !important;
+}
+.table_save{
+	background-image: url(../images/tabel_save.png) !important;
+}
+.table_edit{
+	background-image: url(../images/table_edit.png) !important;
+}

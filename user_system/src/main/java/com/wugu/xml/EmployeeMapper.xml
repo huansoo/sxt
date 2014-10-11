@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wugu.dao.EmployeeDao">
+	<sql id="Example_Where_Clause">
+		<where>
+			<if test="state != null">
+				e.state = ${state}
+			</if>
+			<if test="ruzhiTime != null">
+				and e.ruzhiTime like CONCAT('%',${ruzhiTime},'%')
+			</if> 
+		</where>
+	</sql>
+	<sql id="Example_Basic_Column">
+		id,ename,sex,birthday,cardid,address,orgid,jobids,basesalary,phonecomm,buscomm,baoxiancomm,ruzhitime,cizhitime,lizhitime,cizhireason,state
+	</sql>
+	<resultMap id="associatedMap" type="hashMap">
+		<id property="id" column="id"/>
+		<result property="ename" column="ename"/>
+		<result property="ruzhiTime" column="ruzhiTime"/>
+		<result property="orgName" column="oname"/>
+	</resultMap>
+	<select id="getOnEmployeeList" resultMap="associatedMap" parameterType="Employee">
+		SELECT
+		e.id as "id",
+		e.ename as "ename",
+		e.ruzhitime as "ruzhiTime",
+		o.oname as "oname"
+		<!-- <include refid="Example_Basic_Column"/> -->
+		FROM EMPLOYEE e
+		LEFT JOIN 
+		ORG o ON  e.orgid = o.id
+		<include refid="Example_Where_Clause"/>
+	</select>       
+</mapper>

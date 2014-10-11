@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wugu.dao.OrgDao">
+	<select id="getOrgListByPid" resultType="Org" parameterType="int">
+		SELECT 
+		* 
+		FROM ORG O 
+		WHERE 
+			O.PID=#{pid} 
+	</select>
+	<select id="getOrgById" resultType="Org" parameterType="int">
+		Select 
+		* 
+		FROM ORG O
+		where 
+		o.id=#{id}
+	</select>
+	<insert id="saveOrg" parameterType="Org">
+		<![CDATA[
+		INSERT INTO ORG(
+			ONAME, 
+			PID, 
+			DESCRIPT, 
+			LEAF, 
+			PRINCIPAL)
+		VALUES(
+			#{oname},
+			#{pid},
+			#{descript},
+			#{leaf},
+			#{principal}
+		)
+		]]>
+		<selectKey>
+			select @@IDENTIFY
+		</selectKey>
+	</insert>
+</mapper>
